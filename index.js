@@ -1,4 +1,5 @@
 const express=require('express');
+const joi=require('joi');
 const app=express();
 
 app.use(express.json());
@@ -36,6 +37,18 @@ app.get('/myapi/list/:id',(req,res)=>{
 // });
 
 app.post('/myapi/list',(req,res)=>{
+
+    const condtn={
+        topic:joi.string().min(3).required(),
+        status:joi.string().min(3).required()
+    };
+
+    const result=joi.validate(req.body,condtn);
+
+    if(result.error){
+        res.send(result.error.details[0].message);
+    }
+
     const pdata={
         id : data.length + 1,
         topic : req.body.topic,
