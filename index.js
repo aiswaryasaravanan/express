@@ -2,6 +2,8 @@ const express=require('express');
 const joi=require('joi');
 const app=express();
 
+var PORT=process.env.PORT ||7000;
+
 app.use(express.json());
 
 const data=[
@@ -63,4 +65,4 @@ app.post('/myapi/list',(req,res)=>{
 
 
 
-app.listen(7000,()=>console.log('Listening...'));
+app.listen(PORT,()=>console.log('Listening...'));
