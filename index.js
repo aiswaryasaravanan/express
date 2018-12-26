@@ -4,7 +4,12 @@ const app=express();
 
 var PORT=process.env.PORT ||7000;
 
+app.all('/myapi/list',function(req, res) {
+
+
 app.use(express.json());
+
+
 
 // const data=[
 //     {id:1, topic:'TheBoss', status:'completed' },
@@ -612,7 +617,23 @@ const data=[
           "title": "at nam consequatur ea labore ea harum",
           "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
         }
-    ]
+    ] 
+
+    //*********************
+//*********************
+// app.all('/myapi/list',function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  
+  // app.get('/myapi/list',(req,res)=>{
+    res.send(data);
+  // });
+
+});
+//*********************
+
+
 
 app.get('/',(req,res)=>{
     res.send('Hello Aishu');
@@ -626,9 +647,9 @@ app.get('/myapi/:userid/:id/:title/:body',(req,res)=>{
     res.send(req.params);
 });
 
-app.get('/myapi/list',(req,res)=>{
-    res.send(data);
-});
+// app.get('/myapi/list',(req,res)=>{
+//     res.send(data);
+// });
 
 app.get('/myapi/list/:id',(req,res)=>{
     const dataItem=data.find(q=>q.id===parseInt(req.params.id));
@@ -663,7 +684,6 @@ app.post('/myapi/list',(req,res)=>{
     res.send(data);
 
 });
-
 
 
 
